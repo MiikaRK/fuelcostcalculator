@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Install .NET MAUI workload
-      run: dotnet workload install maui
+      run: dotnet workload install maui --skip-manifest-check
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
