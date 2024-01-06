@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FuelCostCalculator.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="gaspump.jpg"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Old gas pump" />
+
+            <Label
+                Text="Fuel cost calculator"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                Text="Travelled distance (km):"
+                SemanticProperties.Description="Travelled distance" />
+
+            <Entry
+                x:Name="TravelledDistance"
+                Placeholder="Distance" />
+
+            <Label
+                Text="Average fuel consumption (l/100km)"
+                SemanticProperties.Description="Travelled distance" />
+
+            <Entry
+                x:Name="AvgFuelConsumption"
+                Placeholder="Consumption" />
+
+            <Label
+                Text="Price of the gas (€/l)"
+                SemanticProperties.Description="Travelled distance" />
+
+            <Entry
+                x:Name="GasPrice"
+                Placeholder="Gas price" />
+
+            <Button
+                x:Name="SubmitBtn"
+                Text="Submit"
+                Clicked="SubmitBtn_Clicked" />
+
+
+            <Label
+                x:Name="FuelCostEur"
+                />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
