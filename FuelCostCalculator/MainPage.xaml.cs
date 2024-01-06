@@ -19,7 +19,7 @@ namespace FuelCostCalculator
             double gasPrice = Convert.ToDouble(GasPrice.Text);
 
             fuelCostEuros = (distance / 100) * avgFuelConsumption * gasPrice;
-            FuelCostEur.Text = Convert.ToString(fuelCostEuros);
+            FuelCostEur.Text = "Total cost of travelled distance in euros (€)\n" + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€";
         }
     }
 
