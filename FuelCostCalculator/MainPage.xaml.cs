@@ -4,8 +4,12 @@ namespace FuelCostCalculator
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-        double fuelCostEuros;
+        private double distance;
+        private double fuelCostEuros;
+        private double avgFuelConsumption;
+        private double gasPrice;
+        private int numberOfPeople;
+        private double sharedCost;
 
         public MainPage()
         {
@@ -14,12 +18,19 @@ namespace FuelCostCalculator
 
         private void SubmitBtn_Clicked(object sender, EventArgs e)
         {
-            double distance = Convert.ToDouble(TravelledDistance.Text);
-            double avgFuelConsumption = Convert.ToDouble(AvgFuelConsumption.Text);
-            double gasPrice = Convert.ToDouble(GasPrice.Text);
+            distance = Convert.ToDouble(TravelledDistance.Text);
+            avgFuelConsumption = Convert.ToDouble(AvgFuelConsumption.Text);
+            gasPrice = Convert.ToDouble(GasPrice.Text);
 
             fuelCostEuros = (distance / 100) * avgFuelConsumption * gasPrice;
-            FuelCostEur.Text = "Total cost of travelled distance in euros (€)\n" + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€";
+            FuelCostEur.Text = "Total fuel cost of travelled distance (€):\n" + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€";
+
+            if (CostShareAmount.Text != null)
+            {
+                numberOfPeople = Convert.ToInt32(CostShareAmount.Text);
+                sharedCost = fuelCostEuros / numberOfPeople;
+                SharedFuelCostEur.Text = $"Shared cost between {numberOfPeople} people (€):\n" + Convert.ToString(Math.Round(sharedCost, 2)) + "€";
+            }
         }
     }
 
