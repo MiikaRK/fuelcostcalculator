@@ -34,7 +34,7 @@ jobs:
         path: ${{ github.workspace }}/publish
 
   android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     needs: build
 
     steps:
@@ -45,6 +45,9 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '8.0.x'
+
+    - name: Install MAUI Android workload
+      run: dotnet workload install maui-android
 
     - name: Download Artifacts
       uses: actions/download-artifact@v2
