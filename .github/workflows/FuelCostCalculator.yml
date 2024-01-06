@@ -1,0 +1,94 @@
+name: .NET MAUI CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Build Solution
+      run: dotnet build --configuration Release
+
+    - name: Publish Artifacts
+      run: dotnet publish -c Release -o ${{ github.workspace }}/publish
+
+    - name: Archive Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: maui-artifacts
+        path: ${{ github.workspace }}/publish
+
+  android:
+    runs-on: macos-latest
+    needs: build
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Download Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: maui-artifacts
+
+    - name: Build Android
+      run: dotnet build --configuration Release --project FuelCostCalculator.csproj
+
+    - name: Publish Android Artifact
+      run: cp -R ${{ github.workspace }}/YourAndroidProject/bin/Release/net8.0/android/FuelCostCalculator.*.apk ${{ github.workspace }}/publish
+
+    - name: Archive Android Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: android-artifact
+        path: ${{ github.workspace }}/publish
+
+  ios:
+    runs-on: macos-latest
+    needs: build
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Download Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: maui-artifacts
+
+    - name: Build iOS
+      run: dotnet build --configuration Release --project FuelCostCalculator.csproj
+
+    - name: Publish iOS Artifact
+      run: cp -R ${{ github.workspace }}/YouriOSProject/bin/Release/net8.0/ios/FuelCostCalculator.app ${{ github.workspace }}/publish
+
+    - name: Archive iOS Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ios-artifact
+        path: ${{ github.workspace }}/publish
