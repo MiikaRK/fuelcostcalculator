@@ -21,6 +21,9 @@ jobs:
     - name: Restore Dependencies
       run: dotnet restore
 
+    - name: Install MAUI Android workload
+      run: dotnet workload install maui-android
+
     - name: Build Solution
       run: dotnet build --configuration Release
 
@@ -58,7 +61,7 @@ jobs:
       run: dotnet build --configuration Release --project FuelCostCalculator.csproj
 
     - name: Publish Android Artifact
-      run: cp -R ${{ github.workspace }}/YourAndroidProject/bin/Release/net8.0/android/com.companyname.fuelcostcalculator.*.apk ${{ github.workspace }}/publish
+      run: cp -R ${{ github.workspace }}/FuelCostCalculator/bin/Release/net8.0/android/com.companyname.fuelcostcalculator.*.apk ${{ github.workspace }}/publish
 
     - name: Archive Android Artifact
       uses: actions/upload-artifact@v2
@@ -88,7 +91,7 @@ jobs:
       run: dotnet build --configuration Release --project FuelCostCalculator.csproj
 
     - name: Publish iOS Artifact
-      run: cp -R ${{ github.workspace }}/YouriOSProject/bin/Release/net8.0/ios/FuelCostCalculator.app ${{ github.workspace }}/publish
+      run: cp -R ${{ github.workspace }}/FuelCostCalculator/bin/Release/net8.0/ios/FuelCostCalculator.app ${{ github.workspace }}/publish
 
     - name: Archive iOS Artifact
       uses: actions/upload-artifact@v2
