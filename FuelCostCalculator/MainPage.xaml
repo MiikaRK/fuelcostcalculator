@@ -36,11 +36,19 @@
 
             <Label
                 Text="Price of the gas (€/l)"
-                SemanticProperties.Description="Travelled distance" />
+                SemanticProperties.Description="Price of the gas at the moment" />
 
             <Entry
                 x:Name="GasPrice"
                 Placeholder="Gas price" />
+
+            <Label
+                Text="Number of people sharing the fuel cost (optional)"
+                SemanticProperties.Description="" />
+
+            <Entry
+                x:Name="CostShareAmount"
+                Placeholder="Amount" />
 
             <Button
                 x:Name="SubmitBtn"
@@ -49,8 +57,10 @@
 
 
             <Label
-                x:Name="FuelCostEur"
-                />
+                x:Name="FuelCostEur" />
+
+            <Label
+                x:Name="SharedFuelCostEur" />
 
         </VerticalStackLayout>
     </ScrollView>
