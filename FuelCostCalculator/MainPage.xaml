@@ -28,7 +28,7 @@
 
             <Label
                 Text="Average fuel consumption (l/100km)"
-                SemanticProperties.Description="Travelled distance" />
+                SemanticProperties.Description="Average fuel consumption of the vehicle" />
 
             <Entry
                 x:Name="AvgFuelConsumption"
@@ -44,7 +44,7 @@
 
             <Label
                 Text="Number of people sharing the fuel cost (optional)"
-                SemanticProperties.Description="" />
+                SemanticProperties.Description="Number of people sharing the fuel cost" />
 
             <Entry
                 x:Name="CostShareAmount"
@@ -54,7 +54,6 @@
                 x:Name="SubmitBtn"
                 Text="Submit"
                 Clicked="SubmitBtn_Clicked" />
-
 
             <Label
                 x:Name="FuelCostEur" />
