@@ -24,6 +24,7 @@
 
             <Entry
                 x:Name="TravelledDistance"
+                Keyboard="Numeric"
                 Placeholder="Distance" />
 
             <Label
@@ -32,6 +33,7 @@
 
             <Entry
                 x:Name="AvgFuelConsumption"
+                Keyboard="Numeric"
                 Placeholder="Consumption" />
 
             <Label
@@ -40,6 +42,7 @@
 
             <Entry
                 x:Name="GasPrice"
+                Keyboard="Numeric"
                 Placeholder="Gas price" />
 
             <Label
@@ -48,6 +51,7 @@
 
             <Entry
                 x:Name="CostShareAmount"
+                Keyboard="Numeric"
                 Placeholder="Amount" />
 
             <Button
