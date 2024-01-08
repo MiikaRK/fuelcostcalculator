@@ -22,12 +22,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.0.x
-          include-prerelease: true
-
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
-        with:
-          vs-prerelease: true
 
       - name: Install MAUI Workloads
         run: |
@@ -37,13 +31,13 @@ jobs:
         run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
 
       - name: Build MAUI Windows
-        run: msbuild FuelCostCalculator/FuelCostCalculator.csproj -r -p:Configuration=Release -p:RestorePackages=false -p:TargetFramework=net8.0-windows10.0.19041 /p:GenerateAppxPackageOnBuild=true
+        run: dotnet publish FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net6.0-windows10.0.19041.0 --no-restore
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-ci-build
-          path: FuelCostCalculator/bin/Release/net8.0-windows*/**/FuelCostCalculator*.msix
+          path: FuelCostCalculator/bin/Release/net8.0-windows10.0.19041.0/win10-x64/AppPackages/FuelCostCalculator*/FuelCostCalculator*.msix
 
   build-android:
     runs-on: windows-2022
@@ -56,17 +50,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 8.0.x
-          include-prerelease: true
-
-      - uses: actions/setup-java@v2
-        with:
-          distribution: 'microsoft'
-          java-version: '11'
 
       - name: Install MAUI Workloads
-        run: |
-          dotnet workload install android --ignore-failed-sources
-          dotnet workload install maui --ignore-failed-sources
+        run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
         run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
