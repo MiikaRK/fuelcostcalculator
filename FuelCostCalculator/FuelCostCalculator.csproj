@@ -5,6 +5,7 @@
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+		<RuntimeIdentifiers Condition=" '$(TargetFramework)' == 'net8.0-windows10.0.19041.0' ">win-x64</RuntimeIdentifiers>
         <Platform Condition=" '$(TargetFramework)' == 'net8.0-windows10.0.19041.0' ">x64</Platform>
         <PublishReadyToRun>false</PublishReadyToRun>
 		<!-- Note for MacCatalyst:
