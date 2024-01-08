@@ -7,7 +7,7 @@
         private double avgFuelConsumption;
         private double gasPrice;
         private int numberOfPeople;
-        private double sharedCost;
+        private readonly double sharedCost;
 
         public MainPage()
         {
