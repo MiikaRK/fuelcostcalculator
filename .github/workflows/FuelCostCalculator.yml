@@ -31,7 +31,7 @@ jobs:
         run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
 
       - name: Build MAUI Windows
-        run: dotnet publish FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-windows10.0.19041.0 --runtime win-x64 --no-restore -o out
+        run: dotnet publish FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-windows10.0.19041.0 --runtime win-x64 --no-restore -o $(Build.ArtifactStagingDirectory)/Release/net8.0-windows10.0.19041.0/AppPackages  
 
       - name: List Output Directory
         run: ls -R out
@@ -40,7 +40,9 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-ci-build
-          path: out/AppPackages/FuelCostCalculator_1.0.0.1_Test/FuelCostCalculator_1.0.0.1_x64.msix
+          path: $(Build.ArtifactStagingDirectory)/Release/net8.0-windows10.0.19041.0/AppPackages
+      
+      
       
 
   build-android:
