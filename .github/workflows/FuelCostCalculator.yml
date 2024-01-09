@@ -40,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v2.3.1
         with:
           name: windows-ci-build
-          path: ${{ github.workspace }}/bin/x64/Release/net8.0-windows10.0.19041.0/win-x64/AppPackages/FuelCostCalculator_1.0.0.1_Test/FuelCostCalculator_1.0.0.1_x64.msix
+          path: fuelcostcalculator/FuelCostCalculator/bin/x64/Release/net8.0-windows10.0.19041.0/win-x64/AppPackages/FuelCostCalculator_1.0.0.1_Test/FuelCostCalculator_1.0.0.1_x64.msix
       
 
   build-android:
