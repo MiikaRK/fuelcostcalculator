@@ -11,44 +11,15 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build-windows:
-    runs-on: windows-2022
-    name: Windows Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 8.0.x
-
-      - name: Install MAUI Workloads
-        run: |
-          dotnet workload install maui --ignore-failed-sources
-
-      - name: Restore Dependencies
-        run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
-
-      - name: Build MAUI Windows
-        run: dotnet publish FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-windows10.0.19041.0 --runtime win-x64 --no-restore 
-      
-      - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: windows-ci-build
-          path: FuelCostCalculator/bin/x64/Release/net8.0-windows10.0.19041.0/win-x64/AppPackages/FuelCostCalculator_1.0.0.1_Test/FuelCostCalculator_1.0.0.1_x64.msix
-      
-
   build-android:
     runs-on: windows-2022
     name: Android Build
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup .NET 8
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 8.0.x
 
@@ -62,7 +33,7 @@ jobs:
         run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-android --no-restore
 
       - name: Upload Android Artifact
-        uses: actions/upload-artifact@v2.3.1
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: android-ci-build
           path: FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
