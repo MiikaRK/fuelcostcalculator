@@ -57,7 +57,7 @@ jobs:
         run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
 
       - name: Build MAUI iOS
-        run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-ios --no-restore /p:PublishTrimmed=false
+        run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-ios --no-restore /p:PublishTrimmed=true
 
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@v3.1.0
