@@ -22,7 +22,7 @@ Calculator takes following inputs from the user and calculates fuel cost as a pr
 
 ## Install
 
-1. Go to _Actions_ and select latest pipeline run
+1. Go to _Actions_ and select latest successful pipeline run in `master` branch
 
 ![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/7a0b38c3-b28d-41d1-b157-845b0a4af81c)
 
