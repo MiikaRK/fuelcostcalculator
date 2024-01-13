@@ -9,6 +9,11 @@ on:
       - '**/*.gitattributes'      
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
 
 jobs:
   build-android:
