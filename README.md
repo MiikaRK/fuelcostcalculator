@@ -18,7 +18,9 @@ Calculator takes following inputs from the user and calculates fuel cost as a pr
 
 ## Screenshots
 
-![FuelCostCalculator_mobile_example](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/0d1e7190-91e6-47c5-8b0d-ee8a4eab7957)
+![Screenshot_20240113-222954](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/59ffce7d-65c1-4129-83e7-4c3437ff9f26)
+![Screenshot_20240113-223030](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/496ffb7e-d000-4280-a6db-83e10b51cc3a)
+
 
 ## Install
 
