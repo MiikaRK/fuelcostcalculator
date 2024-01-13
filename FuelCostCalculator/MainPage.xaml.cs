@@ -7,7 +7,7 @@
         private double avgFuelConsumption;
         private double gasPrice;
         private int numberOfPeople;
-        private readonly double sharedCost;
+        private double sharedCost;
 
         public MainPage()
         {
@@ -16,8 +16,8 @@
 
         private async void SubmitBtn_Clicked(object sender, EventArgs e)
         {
-            if (double.TryParse(TravelledDistance.Text, out distance) && 
-                double.TryParse(AvgFuelConsumption.Text, out avgFuelConsumption) && 
+            if (double.TryParse(TravelledDistance.Text, out distance) &&
+                double.TryParse(AvgFuelConsumption.Text, out avgFuelConsumption) &&
                 double.TryParse(GasPrice.Text, out gasPrice))
             {
                 distance = Convert.ToDouble(TravelledDistance.Text);
@@ -28,27 +28,32 @@
 
                 if (CostShareAmount.Text != null && int.TryParse(CostShareAmount.Text, out numberOfPeople))
                 {
-                    CalculateSharedFuelCost(numberOfPeople, sharedCost, fuelCostEuros);
+                    CalculateSharedFuelCost(numberOfPeople);
+
+                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
+                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€\n"
+                        + $"Shared cost between {numberOfPeople} people (€):\n"
+                        + Convert.ToString(Math.Round(sharedCost, 2)) + "€", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
+                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€", "OK");
                 }
             }
             else
             {
-                await DisplayAlert("Incorrect input", "Please put valid input", "OK");
+                await DisplayAlert("Error", "Incorrect input, try again", "OK");
             }
         }
-        private double CalculateFuelCost(double distance, double avgFuelConsumption, double gasPrice)
+        private void CalculateFuelCost(double distance, double avgFuelConsumption, double gasPrice)
         {
             fuelCostEuros = (distance / 100) * avgFuelConsumption * gasPrice;
-            FuelCostEur.Text = "Total fuel cost of travelled distance (€):\n" + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€";
-            return fuelCostEuros;
         }
 
-        private void CalculateSharedFuelCost(int numberOfPeople, double sharedCost, double fuelCostEuros)
+        private void CalculateSharedFuelCost(int numberOfPeople)
         {
-            numberOfPeople = Convert.ToInt32(CostShareAmount.Text);
             sharedCost = fuelCostEuros / numberOfPeople;
-            SharedFuelCostEur.Text = $"Shared cost between {numberOfPeople} people (€):\n" + Convert.ToString(Math.Round(sharedCost, 2)) + "€";
         }
     }
-
 }

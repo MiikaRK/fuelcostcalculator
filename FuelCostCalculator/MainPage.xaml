@@ -7,29 +7,36 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            <Image
+            
+            <StackLayout Padding="0,25,0,0">
+                <Image
                 Source="gaspump.jpg"
-                HeightRequest="185"
+                HeightRequest="130"
                 Aspect="AspectFit"
                 SemanticProperties.Description="Old gas pump" />
-
+            </StackLayout>
+            
             <Label
                 Text="Fuel cost calculator"
                 Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+                SemanticProperties.HeadingLevel="Level1"
+                FontFamily="Cabin_Condensed-Regular" />
 
             <Label
                 Text="Travelled distance (km):"
-                SemanticProperties.Description="Travelled distance" />
+                SemanticProperties.Description="Travelled distance"
+                FontFamily="Cabin_Condensed-Regular" />
 
             <Entry
                 x:Name="TravelledDistance"
                 Keyboard="Numeric"
-                Placeholder="Distance" />
+                Placeholder="Distance" 
+                />
 
             <Label
                 Text="Average fuel consumption (l/100km)"
-                SemanticProperties.Description="Average fuel consumption of the vehicle" />
+                SemanticProperties.Description="Average fuel consumption of the vehicle"
+                FontFamily="Cabin_Condensed-Regular" />
 
             <Entry
                 x:Name="AvgFuelConsumption"
@@ -38,16 +45,19 @@
 
             <Label
                 Text="Price of the gas (€/l)"
-                SemanticProperties.Description="Price of the gas at the moment" />
+                SemanticProperties.Description="Price of the gas at the moment"
+                FontFamily="Cabin_Condensed-Regular" />
 
             <Entry
                 x:Name="GasPrice"
                 Keyboard="Numeric"
-                Placeholder="Gas price" />
+                Placeholder="Gas price"
+                MaxLength="5" />
 
             <Label
                 Text="Number of people sharing the fuel cost (optional)"
-                SemanticProperties.Description="Number of people sharing the fuel cost" />
+                SemanticProperties.Description="Number of people sharing the fuel cost"
+                FontFamily="Cabin_Condensed-Regular" />
 
             <Entry
                 x:Name="CostShareAmount"
@@ -58,12 +68,6 @@
                 x:Name="SubmitBtn"
                 Text="Submit"
                 Clicked="SubmitBtn_Clicked" />
-
-            <Label
-                x:Name="FuelCostEur" />
-
-            <Label
-                x:Name="SharedFuelCostEur" />
 
         </VerticalStackLayout>
     </ScrollView>
