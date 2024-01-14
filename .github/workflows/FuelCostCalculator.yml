@@ -38,3 +38,14 @@ jobs:
         with:
           name: android-ci-build
           path: FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
+
+      - name: Release artifact
+        uses: softprops/action-gh-release@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        with:
+          files: |
+            FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
+          tag_name: v1.0.${{ github.run_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.FUELCOSTCALCULATOR_TOKEN }}
+
