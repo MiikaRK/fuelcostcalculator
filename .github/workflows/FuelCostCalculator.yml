@@ -39,31 +39,9 @@ jobs:
           name: android-ci-build
           path: FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
 
-  release-android:
-    needs: build-android
-    runs-on: ubuntu-latest
-    name: Release Android Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Set up Java
-        uses: actions/setup-java@v2
+      - name: Release artifact
+        uses: softprops/action-gh-release@v1
         with:
-          distribution: 'adopt'
-          java-version: '11'
-
-      - name: Install softprops/action-gh-release
-        run: curl -sSL https://github.com/softprops/action-gh-release/releases/latest/download/ghr_linux_amd64 -o /usr/local/bin/ghr && chmod +x /usr/local/bin/ghr
-      
-      - name: Install ghr
-        run: |
-            curl -sL https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz | tar xz
-            sudo mv ghr_v0.14.0_linux_amd64/ghr /usr/local/bin/
-      
-      - name: List Artifacts
-        run: ls -R FuelCostCalculator/bin/Release/net8.0-android
-
-      - name: Upload Android Artifact to GitHub Releases
-        run: ghr -t ${{ secrets.FUELCOSTCALCULATOR_TOKEN }} -u ${{ github.repository_owner }} -r ${{ github.event.repository.name }} --replace v1.0.${{ github.run_number }} android-ci-build
+            files: |
+              FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
 
