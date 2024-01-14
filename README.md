@@ -25,8 +25,8 @@ Calculator takes following inputs from the user and calculates fuel cost as a pr
 
 1. Go to _Actions_ and select latest **successful** pipeline run in `master` branch
 
-![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/7a0b38c3-b28d-41d1-b157-845b0a4af81c)
+![Screenshot 2024-01-14 092729](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/9649b4d0-0e98-48b1-b997-fa0215ab32b6)
 
 2. Click the published artifact `android-ci-build` and downloading starts. The zip package includes Android App Bundle (.aab) and Android Package (.apk). Easiest way is to install with the .apk file.
 
-![Screenshot 2024-01-09 184859](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/38da6e92-6513-4363-96ad-79e51d597b9a)
+![Screenshot 2024-01-14 093102](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/8159a6f7-0b7d-4c48-b643-445e98999328)
