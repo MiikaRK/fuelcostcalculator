@@ -14,7 +14,7 @@ on:
 jobs:
   build-android:
     runs-on: windows-2022
-    name: Android Build
+    name: Android Build & Release
     steps:
       - name: Checkout
         uses: actions/checkout@v3
