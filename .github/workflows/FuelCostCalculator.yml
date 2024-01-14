@@ -42,6 +42,9 @@ jobs:
       - name: Release artifact
         uses: softprops/action-gh-release@v1
         with:
-            files: |
-              FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
+          files: |
+            FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
+          tag_name: v1.0.${{ github.run_number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.FUELCOSTCALCULATOR_TOKEN }}
 
