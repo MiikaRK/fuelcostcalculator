@@ -1,7 +1,7 @@
 # FuelCostCalculator
 ## Overview
 
-Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment, this program can be used in Android devices.
+Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment, this program can be used in **Android** devices.
 
 ## Used techniques
 
