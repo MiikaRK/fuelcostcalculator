@@ -41,6 +41,7 @@ jobs:
 
       - name: Release artifact
         uses: softprops/action-gh-release@v1
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           files: |
             FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
