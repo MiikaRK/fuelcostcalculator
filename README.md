@@ -10,7 +10,7 @@ Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment,
 
 ## Prerequisites
 
-- Android Device (minimum Android 5.0)
+- Android Device (requires Android 5.0 or newer version)
 
 ## Features
 
