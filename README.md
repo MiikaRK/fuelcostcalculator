@@ -8,6 +8,10 @@ Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment,
 - .NET MAUI
 - C#
 
+## Prerequisites
+
+- Android Device (minimum Android 5.0)
+
 ## Features
 
 Calculator takes following inputs from the user and calculates fuel cost as a price (€): 
