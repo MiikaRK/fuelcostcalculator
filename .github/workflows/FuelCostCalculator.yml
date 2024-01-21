@@ -32,7 +32,11 @@ jobs:
 
       - name: Build MAUI Android
         run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-android --no-restore
-
+      
+      - name: Initialize Date-based Versioning
+        id: set_version
+        run: echo "::set-output name=version::$(date -u +%Y-%m-%d)"
+      
       - name: Upload Android Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
@@ -45,7 +49,7 @@ jobs:
         with:
           files: |
             FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
-          tag_name: v1.0.${{ github.run_number }}
+          tag_name: ${{ steps.set_version.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.FUELCOSTCALCULATOR_TOKEN }}
 
