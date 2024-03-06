@@ -51,5 +51,5 @@ jobs:
             FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
           tag_name: ${{ steps.set_version.outputs.version }}
         env:
-          GITHUB_TOKEN: ${{ secrets.FUELCOSTCALCULATOR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
