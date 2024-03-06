@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: android-ci-build
-          path: FuelCostCalculator/bin/Release/net8.0-android/*Signed.a*
+          path: FuelCostCalculator/bin/Release/net8.0-android/*.apk
 
       - name: Release artifact
         uses: softprops/action-gh-release@v1
