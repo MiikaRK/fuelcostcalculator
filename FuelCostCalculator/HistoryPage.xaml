@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FuelCostCalculator.HistoryPage"
+             Title="History"
+             xmlns:local="clr-namespace:FuelCostCalculator">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="historyListView"
+          ItemsSource="{Binding HistoryItems}"
+          ItemSelected="OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Date:" />
+                                    <Label Text="{Binding Date}" />
+                                </StackLayout>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Fuel cost (€):" Margin="25,0,0,0"/>
+                                    <Label Text="{Binding Cost}" Margin="25,0,0,0"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Clear history" Clicked="ClearButton_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

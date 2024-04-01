@@ -1,0 +1,61 @@
+using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Threading.Tasks;
+
+namespace FuelCostCalculator
+{
+    public partial class HistoryPage : ContentPage
+    {
+        private HistoryItemDb historyItemDb;
+
+        public ObservableCollection<HistoryItemViewModel> HistoryItems { get; set; }
+
+        public HistoryPage()
+        {
+            InitializeComponent();
+            historyItemDb = new HistoryItemDb();
+            HistoryItems = new ObservableCollection<HistoryItemViewModel>();
+            BindingContext = this;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadHistoryItems();
+        }
+
+        async Task LoadHistoryItems()
+        {
+            var items = await historyItemDb.GetHistoryItems();
+            HistoryItems.Clear();
+            foreach (var item in items)
+            {
+                HistoryItems.Add(new HistoryItemViewModel(item));
+            }
+        }
+
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (!(args.SelectedItem is HistoryItemViewModel selectedItem))
+                return;
+
+            string message = $"Date: {selectedItem.Date}\n" +
+                             $"Distance: {selectedItem.Distance}\n" +
+                             $"Average fuel consumption (l/100km): {selectedItem.AvgFuelConsumption}\n" +
+                             $"Price of the gas: {selectedItem.GasPrice}\n" +
+                             $"Number of people sharing the fuel cost: {selectedItem.NumberOfPeople}\n" +
+                             $"Cost: {Math.Round(selectedItem.Cost, 2)}€";
+
+            await DisplayAlert("History Item Details", message, "OK");
+
+            ((ListView)sender).SelectedItem = null;
+        }
+
+        private void ClearButton_Clicked(object sender, EventArgs e)
+        {
+            HistoryItems.Clear();
+            _ = historyItemDb.ClearHistoryItems();
+        }
+    }
+}

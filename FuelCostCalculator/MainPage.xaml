@@ -7,7 +7,7 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
-            
+
             <StackLayout Padding="0,25,0,0">
                 <Image
                 Source="gaspump.jpg"
@@ -15,7 +15,7 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="Old gas pump" />
             </StackLayout>
-            
+
             <Label
                 Text="Fuel cost calculator"
                 Style="{StaticResource Headline}"
@@ -68,6 +68,11 @@
                 x:Name="SubmitBtn"
                 Text="Submit"
                 Clicked="SubmitBtn_Clicked" />
+
+            <Button
+                x:Name="HistoryBtn"
+                Text="History"
+                Clicked="HistoryBtn_Clicked" />
 
         </VerticalStackLayout>
     </ScrollView>

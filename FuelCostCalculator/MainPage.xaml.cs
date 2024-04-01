@@ -8,10 +8,12 @@
         private double gasPrice;
         private int numberOfPeople;
         private double sharedCost;
+        HistoryItemDb db;
 
         public MainPage()
         {
             InitializeComponent();
+            db = new HistoryItemDb();
         }
 
         private async void SubmitBtn_Clicked(object sender, EventArgs e)
@@ -34,11 +36,31 @@
                         + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€\n"
                         + $"Shared cost between {numberOfPeople} people (€):\n"
                         + Convert.ToString(Math.Round(sharedCost, 2)) + "€", "OK");
+
+                    HistoryItem historyItem = new HistoryItem
+                    {
+                        Distance = distance,
+                        AvgFuelConsumption = avgFuelConsumption,
+                        GasPrice = gasPrice,
+                        NumberOfPeople = numberOfPeople,
+                        SharedCost = sharedCost
+                    };
+                    await db.AddHistoryItem(historyItem);
                 }
                 else
                 {
                     await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
                         + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€", "OK");
+
+                    HistoryItem historyItem = new HistoryItem
+                    {
+                        Distance = distance,
+                        AvgFuelConsumption = avgFuelConsumption,
+                        GasPrice = gasPrice,
+                        NumberOfPeople = 1,
+                        SharedCost = fuelCostEuros
+                    };
+                    await db.AddHistoryItem(historyItem);
                 }
             }
             else
@@ -54,6 +76,11 @@
         private void CalculateSharedFuelCost(int numberOfPeople)
         {
             sharedCost = fuelCostEuros / numberOfPeople;
+        }
+
+        private void HistoryBtn_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new HistoryPage());
         }
     }
 }
