@@ -9,7 +9,7 @@ namespace FuelCostCalculator
 {
     public class HistoryItemViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public int ID { get; set; }
         public DateTime Date { get; set; }
