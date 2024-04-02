@@ -19,13 +19,11 @@
             <Label
                 Text="Fuel cost calculator"
                 Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1"
-                FontFamily="Cabin_Condensed-Regular" />
+                SemanticProperties.HeadingLevel="Level1" />
 
             <Label
-                Text="Travelled distance (km):"
-                SemanticProperties.Description="Travelled distance"
-                FontFamily="Cabin_Condensed-Regular" />
+                Text="Travelled distance (km)"
+                SemanticProperties.Description="Travelled distance" />
 
             <Entry
                 x:Name="TravelledDistance"
@@ -35,8 +33,7 @@
 
             <Label
                 Text="Average fuel consumption (l/100km)"
-                SemanticProperties.Description="Average fuel consumption of the vehicle"
-                FontFamily="Cabin_Condensed-Regular" />
+                SemanticProperties.Description="Average fuel consumption of the vehicle" />
 
             <Entry
                 x:Name="AvgFuelConsumption"
@@ -45,8 +42,7 @@
 
             <Label
                 Text="Price of the gas (€/l)"
-                SemanticProperties.Description="Price of the gas at the moment"
-                FontFamily="Cabin_Condensed-Regular" />
+                SemanticProperties.Description="Price of the gas at the moment" />
 
             <Entry
                 x:Name="GasPrice"
@@ -56,8 +52,7 @@
 
             <Label
                 Text="Number of people sharing the fuel cost (optional)"
-                SemanticProperties.Description="Number of people sharing the fuel cost"
-                FontFamily="Cabin_Condensed-Regular" />
+                SemanticProperties.Description="Number of people sharing the fuel cost" />
 
             <Entry
                 x:Name="CostShareAmount"
