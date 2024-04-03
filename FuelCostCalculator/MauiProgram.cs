@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace FuelCostCalculator
 {
@@ -9,10 +10,13 @@ namespace FuelCostCalculator
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Roboto-VariableFont_wght.ttf", "RobotoVariableFont");
+                    fonts.AddFont("Roboto-Italic-VariableFont_wght.ttf", "RobotoItalicVariableFont");
                 });
 
 #if DEBUG

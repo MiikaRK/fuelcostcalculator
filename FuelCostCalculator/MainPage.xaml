@@ -1,18 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
              x:Class="FuelCostCalculator.MainPage">
+
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="Black" />
+    </Page.Behaviors>
 
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
 
-            <StackLayout Padding="0,25,0,0">
+            <StackLayout Padding="0,20,0,-35">
                 <Image
                 Source="gaspump.jpg"
-                HeightRequest="130"
+                HeightRequest="170"
                 Aspect="AspectFit"
+                ScaleY="1.5"
+                ScaleX="1.5"
                 SemanticProperties.Description="Old gas pump" />
             </StackLayout>
 
