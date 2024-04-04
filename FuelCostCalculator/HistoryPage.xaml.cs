@@ -40,14 +40,14 @@ namespace FuelCostCalculator
             if (!(args.SelectedItem is HistoryItemViewModel selectedItem))
                 return;
 
-            string message = $"Date: {selectedItem.Date}\n" +
-                             $"Distance: {selectedItem.Distance}\n" +
+            string message = $"Date: {selectedItem.Date}\n\n" +
+                             $"Distance (km): {selectedItem.Distance}\n" +
                              $"Average fuel consumption (l/100km): {selectedItem.AvgFuelConsumption}\n" +
-                             $"Price of the gas: {selectedItem.GasPrice}\n" +
+                             $"Price of the gas (€): {selectedItem.GasPrice}\n" +
                              $"Number of people sharing the fuel cost: {selectedItem.NumberOfPeople}\n" +
-                             $"Cost: {Math.Round(selectedItem.Cost, 2)}€";
+                             $"Cost (€): {Math.Round(selectedItem.Cost, 2)}";
 
-            await DisplayAlert("History Item Details", message, "OK");
+            await DisplayAlert("Details", message, "OK");
 
             ((ListView)sender).SelectedItem = null;
         }

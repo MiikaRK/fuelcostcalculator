@@ -2,8 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FuelCostCalculator.HistoryPage"
-             Title="History"
              xmlns:local="clr-namespace:FuelCostCalculator">
+    <Shell.TitleView>
+        <Grid>
+            <Label Text="History" Style="{StaticResource SubHeadline}" HorizontalOptions="Start" VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="historyListView"
