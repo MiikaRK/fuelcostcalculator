@@ -15,13 +15,18 @@ Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment,
 
 ## Features
 
-Calculator takes following inputs from the user and calculates fuel cost as a price (€): 
-- Travelled distance (km)
-- Average fuel consumption (l/100km)
-- Current fuel price (€/l)
-- The number of the people to share the fuel costs (optional)
+- Calculator takes following inputs from the user and calculates fuel cost as a price (€): 
+  - Travelled distance (km)
+  - Average fuel consumption (l/100km)
+  - Current fuel price (€/l)
+  - The number of the people to share the fuel costs (optional)
+ 
+- Recent calculations are saved to the database in the device and can be seen in History page
 
 ## Screenshots
 
-![Screenshot_20240113-222954_2](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/8035b70f-ef7b-44e6-9a0c-c513bd7e4ccb)
-![Screenshot_20240113-223030](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/4ba5d697-1134-459b-943f-b95a7b1e8141)
+![Screenshot_20240404-145711_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/d89f7027-57aa-4f7a-a085-027d59ef2b48)
+![Screenshot_20240404-145835_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/47adc4d9-995a-43f1-96d5-85b78cce4a23)
+![Screenshot_20240404-145851_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/ca5ef09a-554a-4c07-89ed-76adcbf8f998)
+![Screenshot_20240404-150946_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/2026d42f-c6ae-44ce-9711-8508726f943d)
+
