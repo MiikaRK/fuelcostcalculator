@@ -1,4 +1,7 @@
 # FuelCostCalculator
+![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/14cb29cd-5a67-48d7-9e75-ac0e7f415cec)
+
+
 ## Overview
 
 Simple fuel cost calculator built with .NET MAUI platform and C#. At the moment, this program can be used in **Android** devices.
