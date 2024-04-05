@@ -54,8 +54,13 @@ namespace FuelCostCalculator
 
         private void ClearButton_Clicked(object sender, EventArgs e)
         {
+            _ = ClearHistoryItems();
+        }
+
+        async Task ClearHistoryItems()
+        {
             HistoryItems.Clear();
-            _ = historyItemDb.ClearHistoryItems();
+            await historyItemDb.ClearHistoryItems();
         }
     }
 }

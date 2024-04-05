@@ -28,14 +28,15 @@
 
                 CalculateFuelCost(distance, avgFuelConsumption, gasPrice);
 
+                string resultMessage = "Total fuel cost of travelled distance (€):\n"
+                    + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€";
+
                 if (CostShareAmount.Text != null && int.TryParse(CostShareAmount.Text, out numberOfPeople))
                 {
                     CalculateSharedFuelCost(numberOfPeople);
 
-                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
-                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€\n"
-                        + $"Shared cost between {numberOfPeople} people (€):\n"
-                        + Convert.ToString(Math.Round(sharedCost, 2)) + "€", "OK");
+                    resultMessage += $"\nShared cost between {numberOfPeople} people (€):\n"
+                        + Convert.ToString(Math.Round(sharedCost, 2)) + "€";
 
                     HistoryItem historyItem = new HistoryItem
                     {
@@ -49,25 +50,28 @@
                 }
                 else
                 {
-                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
-                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€", "OK");
+                    numberOfPeople = 1;
+                    sharedCost = fuelCostEuros;
 
                     HistoryItem historyItem = new HistoryItem
                     {
                         Distance = distance,
                         AvgFuelConsumption = avgFuelConsumption,
                         GasPrice = gasPrice,
-                        NumberOfPeople = 1,
-                        SharedCost = fuelCostEuros
+                        NumberOfPeople = numberOfPeople,
+                        SharedCost = sharedCost
                     };
                     await db.AddHistoryItem(historyItem);
                 }
+
+                await DisplayAlert("Result", resultMessage, "OK");
             }
             else
             {
                 await DisplayAlert("Error", "Incorrect input, try again", "OK");
             }
         }
+
         private void CalculateFuelCost(double distance, double avgFuelConsumption, double gasPrice)
         {
             fuelCostEuros = (distance / 100) * avgFuelConsumption * gasPrice;
