@@ -1,4 +1,5 @@
-# FuelCostCalculator
+# FuelCostCalculator 
+##### © Miika Rinta-Korkeamäki (2024)
 ![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/14cb29cd-5a67-48d7-9e75-ac0e7f415cec)
 
 
