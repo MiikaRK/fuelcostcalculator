@@ -3,6 +3,8 @@
 \
 ![GitHub Release](https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green&link=https%3A%2F%2Fgithub.com%2FMiikaRK%2Ffuelcostcalculator%2Freleases%2Flatest)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MiikaRK/fuelcostcalculator/FuelCostCalculator.yml)
+[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+
 
 ![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/14cb29cd-5a67-48d7-9e75-ac0e7f415cec) 
 
@@ -38,3 +40,6 @@ Simple fuel cost calculator built with .NET MAUI framework and C#. At the moment
 ![Screenshot_20240404-145851_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/ca5ef09a-554a-4c07-89ed-76adcbf8f998)
 ![Screenshot_20240404-150946_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/2026d42f-c6ae-44ce-9711-8508726f943d)
 
+## License
+
+Released under [MIT](/LICENSE) by [@MiikaRK](https://github.com/MiikaRK).
