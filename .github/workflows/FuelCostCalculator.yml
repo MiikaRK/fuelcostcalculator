@@ -72,7 +72,7 @@ jobs:
         run: dotnet restore FuelCostCalculator/FuelCostCalculator.csproj
 
       - name: Build MAUI iOS
-        run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False /p:PublishTrimmed=false
+        run: dotnet build FuelCostCalculator/FuelCostCalculator.csproj -c Release -f net8.0-ios --no-restore /p:buildForSimulator=True /p:packageApp=True /p:ArchiveOnBuild=False /p:MtouchLink=None
       
       - name: Initialize Date-based Versioning
         id: set_version
