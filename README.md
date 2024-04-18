@@ -2,7 +2,8 @@
 © Miika Rinta-Korkeamäki (2024) \
 \
 ![GitHub Release](https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green&link=https%3A%2F%2Fgithub.com%2FMiikaRK%2Ffuelcostcalculator%2Freleases%2Flatest)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/MiikaRK/fuelcostcalculator/FuelCostCalculator.yml?branch=master&link=https%3A%2F%2Fgithub.com%2FMiikaRK%2Ffuelcostcalculator%2Factions)
+    <a href="https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml">
+        <img src="https://img.shields.io/github/actions/workflow/status/MiikaRK/fuelcostcalculator/FuelCostCalculator.yml?branch=master" alt="build status"></a>
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 
