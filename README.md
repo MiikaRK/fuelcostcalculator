@@ -1,7 +1,8 @@
 # FuelCostCalculator 
 © Miika Rinta-Korkeamäki (2024) \
 \
-![GitHub Release](https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green&link=https%3A%2F%2Fgithub.com%2FMiikaRK%2Ffuelcostcalculator%2Freleases%2Flatest)
+    <a href="https://github.com/MiikaRK/fuelcostcalculator/releases/latest">
+        <img src="https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green" alt="latest release"></a>
     <a href="https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml">
         <img src="https://img.shields.io/github/actions/workflow/status/MiikaRK/fuelcostcalculator/FuelCostCalculator.yml?branch=master" alt="build status"></a>
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
