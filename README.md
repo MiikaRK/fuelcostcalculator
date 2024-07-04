@@ -4,7 +4,9 @@
     <a href="https://github.com/MiikaRK/fuelcostcalculator/releases/latest">
         <img src="https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green" alt="latest release"></a>
 [![FuelCostCalculator](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml/badge.svg?branch=master)](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml?query=branch%3Amaster)
+[![CodeQL](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/github-code-scanning/codeql/badge.svg?branch=master)](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/github-code-scanning/codeql?query=branch%3Amaster)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+
 
 
 ![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/14cb29cd-5a67-48d7-9e75-ac0e7f415cec) 
