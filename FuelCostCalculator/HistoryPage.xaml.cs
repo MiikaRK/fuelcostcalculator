@@ -1,13 +1,10 @@
-using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Threading.Tasks;
 
 namespace FuelCostCalculator
 {
     public partial class HistoryPage : ContentPage
     {
-        private HistoryItemDb historyItemDb;
+        private readonly HistoryItemDb historyItemDb;
 
         public ObservableCollection<HistoryItemViewModel> HistoryItems { get; set; }
 
@@ -15,7 +12,7 @@ namespace FuelCostCalculator
         {
             InitializeComponent();
             historyItemDb = new HistoryItemDb();
-            HistoryItems = new ObservableCollection<HistoryItemViewModel>();
+            HistoryItems = [];
             BindingContext = this;
         }
 
@@ -37,7 +34,7 @@ namespace FuelCostCalculator
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            if (!(args.SelectedItem is HistoryItemViewModel selectedItem))
+            if (args.SelectedItem is not HistoryItemViewModel selectedItem)
                 return;
 
             string message = $"Date: {selectedItem.Date}\n\n" +

@@ -1,33 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace FuelCostCalculator
 {
-    public class HistoryItemViewModel : INotifyPropertyChanged
+    public class HistoryItemViewModel(HistoryItem item) : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public int ID { get; set; }
-        public DateTime Date { get; set; }
-        public double Distance { get; set; }
-        public double AvgFuelConsumption { get; set; }
-        public double GasPrice { get; set; }
-        public int NumberOfPeople { get; set; }
-        public double Cost { get; set; }
+        public int ID { get; set; } = item.ID;
+        public DateTime Date { get; set; } = item.Date;
+        public double Distance { get; set; } = item.Distance;
+        public double AvgFuelConsumption { get; set; } = item.AvgFuelConsumption;
+        public double GasPrice { get; set; } = item.GasPrice;
+        public int NumberOfPeople { get; set; } = item.NumberOfPeople;
+        public double Cost { get; set; } = Math.Round(item.SharedCost, 2);
 
-        public HistoryItemViewModel(HistoryItem item)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
-            ID = item.ID;
-            Date = item.Date;
-            Distance = item.Distance;
-            AvgFuelConsumption = item.AvgFuelConsumption;
-            GasPrice = item.GasPrice;
-            NumberOfPeople = item.NumberOfPeople;
-            Cost = Math.Round(item.SharedCost, 2);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
