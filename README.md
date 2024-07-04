@@ -3,7 +3,7 @@
 \
     <a href="https://github.com/MiikaRK/fuelcostcalculator/releases/latest">
         <img src="https://img.shields.io/github/v/release/MiikaRK/fuelcostcalculator?color=green" alt="latest release"></a>
-[![FuelCostCalculator](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml/badge.svg?branch=master)](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml)
+[![FuelCostCalculator](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml/badge.svg?branch=master)](https://github.com/MiikaRK/fuelcostcalculator/actions/workflows/FuelCostCalculator.yml?branch=master)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 
