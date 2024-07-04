@@ -8,7 +8,7 @@
         private double gasPrice;
         private int numberOfPeople;
         private double sharedCost;
-        HistoryItemDb db;
+        readonly HistoryItemDb db;
 
         public MainPage()
         {
@@ -37,7 +37,7 @@
                         + $"Shared cost between {numberOfPeople} people (€):\n"
                         + Convert.ToString(Math.Round(sharedCost, 2)) + "€", "OK");
 
-                    HistoryItem historyItem = new HistoryItem
+                    HistoryItem historyItem = new()
                     {
                         Distance = distance,
                         AvgFuelConsumption = avgFuelConsumption,
@@ -52,7 +52,7 @@
                     await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
                         + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€", "OK");
 
-                    HistoryItem historyItem = new HistoryItem
+                    HistoryItem historyItem = new()
                     {
                         Distance = distance,
                         AvgFuelConsumption = avgFuelConsumption,

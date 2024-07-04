@@ -1,31 +1,22 @@
 ﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FuelCostCalculator
 {
     public class HistoryItemDb
     {
         const string databaseFilename = "fuelCostDb.db3";
-        static string databasePath = Path.Combine(FileSystem.AppDataDirectory, databaseFilename);
+        static readonly string databasePath = Path.Combine(FileSystem.AppDataDirectory, databaseFilename);
         const SQLiteOpenFlags flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache;
         SQLiteAsyncConnection database;
 
         public HistoryItemDb()
         {
-
+            database = new SQLiteAsyncConnection(databasePath, flags);
         }
 
         async Task Init()
         {
-            if (database != null)
-            {
-                return;
-            }
-            else
+            if (database == null)
             {
                 database = new SQLiteAsyncConnection(databasePath, flags);
                 await database.CreateTableAsync<HistoryItem>();
