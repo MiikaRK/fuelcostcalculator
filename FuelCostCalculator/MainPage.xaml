@@ -48,14 +48,19 @@
                 Placeholder="Consumption" />
 
             <Label
-                Text="Price of the gas (€/l)"
-                SemanticProperties.Description="Price of the gas at the moment" />
+                Text="Select Fuel Type"
+                SemanticProperties.Description="Select Fuel Type" />
 
-            <Entry
-                x:Name="GasPrice"
-                Keyboard="Numeric"
-                Placeholder="Gas price"
-                MaxLength="5" />
+            <RadioButton x:Name="rb95E10" Content="95E10" CheckedChanged="OnFuelTypeChanged" />
+            <RadioButton x:Name="rb98E5" Content="98E5" CheckedChanged="OnFuelTypeChanged" />
+            <RadioButton x:Name="rbDiesel" Content="Diesel" CheckedChanged="OnFuelTypeChanged" />
+
+
+            <Label
+                x:Name="lblGasPrice"
+                Text="Gas Price: 0.0 €/l"
+                FontSize="Medium"
+                HorizontalOptions="Center" />
 
             <Label
                 Text="Number of people sharing the fuel cost (optional)"
@@ -78,5 +83,4 @@
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

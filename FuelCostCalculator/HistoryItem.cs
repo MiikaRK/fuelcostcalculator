@@ -6,7 +6,6 @@ namespace FuelCostCalculator
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-
         public DateTime Date { get; set; }
         public double Distance { get; set; }
         public double AvgFuelConsumption { get; set; }

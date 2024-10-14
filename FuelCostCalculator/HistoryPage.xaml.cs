@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace FuelCostCalculator
 {
@@ -7,12 +8,12 @@ namespace FuelCostCalculator
         private readonly HistoryItemDb historyItemDb;
 
         public ObservableCollection<HistoryItemViewModel> HistoryItems { get; set; }
-
+#pragma warning disable CA1416 // Validate platform compatibility
         public HistoryPage()
         {
             InitializeComponent();
             historyItemDb = new HistoryItemDb();
-            HistoryItems = [];
+            HistoryItems = new ObservableCollection<HistoryItemViewModel>(); // Correctly initialize the collection
             BindingContext = this;
         }
 
@@ -24,16 +25,24 @@ namespace FuelCostCalculator
 
         async Task LoadHistoryItems()
         {
-            var items = await historyItemDb.GetHistoryItems();
-            HistoryItems.Clear();
-            foreach (var item in items)
+            try
             {
-                HistoryItems.Add(new HistoryItemViewModel(item));
+                var items = await historyItemDb.GetHistoryItems();
+                HistoryItems.Clear();
+                foreach (var item in items)
+                {
+                    HistoryItems.Add(new HistoryItemViewModel(item));
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load history items: {ex.Message}", "OK");
             }
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+
             if (args.SelectedItem is not HistoryItemViewModel selectedItem)
                 return;
 
@@ -44,15 +53,22 @@ namespace FuelCostCalculator
                              $"Number of people sharing the fuel cost: {selectedItem.NumberOfPeople}\n" +
                              $"Cost (€): {Math.Round(selectedItem.Cost, 2)}";
 
+#pragma warning disable CA1416 // Validate platform compatibility
             await DisplayAlert("Details", message, "OK");
 
             ((ListView)sender).SelectedItem = null;
+
         }
 
-        private void ClearButton_Clicked(object sender, EventArgs e)
+        async void ClearButton_Clicked(object sender, EventArgs e)
         {
-            HistoryItems.Clear();
-            _ = historyItemDb.ClearHistoryItems();
+            bool confirm = await DisplayAlert("Confirm", "Are you sure you want to clear the history?", "Yes", "No");
+            if (confirm)
+            {
+                HistoryItems.Clear();
+                await historyItemDb.ClearHistoryItems();
+            }
         }
+#pragma warning restore CA1416 // Validate platform compatibility
     }
 }

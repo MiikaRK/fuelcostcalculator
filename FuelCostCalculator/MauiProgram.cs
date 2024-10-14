@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace FuelCostCalculator
 {
@@ -8,6 +9,16 @@ namespace FuelCostCalculator
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
+
+            var getAssembly = Assembly.GetExecutingAssembly();
+            using var stream = getAssembly.GetManifestResourceStream("FuelCostCalculator.appsettings.json");
+
+            var config = new ConfigurationBuilder()
+                .AddJsonStream(stream)
+                .Build();
+
+            builder.Configuration.AddConfiguration(config);
+
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
@@ -19,10 +30,8 @@ namespace FuelCostCalculator
                     fonts.AddFont("Roboto-Italic-VariableFont_wght.ttf", "RobotoItalicVariableFont");
                 });
 
-#if DEBUG
-            builder.Logging.AddDebug();
-#endif
             builder.Services.AddSingleton<HistoryItemDb>();
+            builder.Services.AddTransient<MainPage>();
 
             return builder.Build();
         }
