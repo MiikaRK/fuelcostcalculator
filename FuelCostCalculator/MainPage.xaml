@@ -51,10 +51,24 @@
                 Text="Select Fuel Type"
                 SemanticProperties.Description="Select Fuel Type" />
 
-            <RadioButton x:Name="rb95E10" Content="95E10" CheckedChanged="OnFuelTypeChanged" />
-            <RadioButton x:Name="rb98E5" Content="98E5" CheckedChanged="OnFuelTypeChanged" />
-            <RadioButton x:Name="rbDiesel" Content="Diesel" CheckedChanged="OnFuelTypeChanged" />
+            <RadioButton 
+                x:Name="button95" 
+                Content="95 E10" 
+                CheckedChanged="OnFuelTypeChanged" 
+                GroupName="FuelType" 
+                IsChecked="True" />
 
+            <RadioButton 
+                x:Name="button98" 
+                Content="98 E5" 
+                CheckedChanged="OnFuelTypeChanged" 
+                GroupName="FuelType" />
+
+            <RadioButton 
+                x:Name="buttonDiesel" 
+                Content="Diesel" 
+                CheckedChanged="OnFuelTypeChanged" 
+                GroupName="FuelType" />
 
             <Label
                 x:Name="lblGasPrice"
@@ -83,4 +97,5 @@
 
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

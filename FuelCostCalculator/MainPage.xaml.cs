@@ -1,57 +1,57 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;
 
 namespace FuelCostCalculator
 {
     public partial class MainPage : ContentPage
     {
-        private readonly IConfiguration _configuration;
+        IConfiguration configuration;
         private double distance;
         private double fuelCostEuros;
         private double avgFuelConsumption;
         private double gasPrice;
         private int numberOfPeople;
         private double sharedCost;
-        readonly HistoryItemDb db;
+        private readonly HistoryItemDb db;
 
-        public MainPage(IConfiguration configuration)
+        public MainPage(IConfiguration config)
         {
             InitializeComponent();
-            _configuration = configuration;
+            configuration = config;
             db = new HistoryItemDb();
+            GetFuelPrice();
         }
 
-        private async void OnFuelTypeChanged(object sender, CheckedChangedEventArgs e)
+        private async Task<double> GetFuelPrice()
         {
-            if (e.Value)
+            //string? url = configuration["FuelApiUrl"] ?? throw new InvalidOperationException("FuelApiUrl is not configured.");
+            string url = "https://www.tankille.fi/suomi";
+            try
             {
-                try
+                if (button95.IsChecked)
                 {
-                    //string? url = _configuration["FuelApiUrl"] ?? throw new InvalidOperationException("FuelApiUrl is not configured.");
-                    string url = "https://www.tankille.fi/suomi/";
-                    var selectedRadioButton = (RadioButton)sender;
-                    string selectedFuelType = selectedRadioButton.Content?.ToString() ?? throw new InvalidOperationException("Selected fuel type is null.");
-
-                    switch (selectedFuelType)
-                    {
-                        case "95E10":
-                            gasPrice = await FuelPriceScraper.GetFuel95Price(url);
-                            break;
-                        case "98E5":
-                            gasPrice = await FuelPriceScraper.GetFuel98Price(url);
-                            break;
-                        case "Diesel":
-                            gasPrice = await FuelPriceScraper.GetDieselPrice(url);
-                            break;
-                    }
-
-                    lblGasPrice.Text = $"Gas Price: {gasPrice} €/l";
+                    gasPrice = await FuelPriceScraper.GetFuel95Price(url);
                 }
-                catch (Exception ex)
+                else if (button98.IsChecked)
                 {
-                    lblGasPrice.Text = $"Error fetching gas price: {ex.Message}";
+                    gasPrice = await FuelPriceScraper.GetFuel98Price(url);
                 }
+                else if (buttonDiesel.IsChecked)
+                {
+                    gasPrice = await FuelPriceScraper.GetDieselPrice(url);
+                }
+
+                lblGasPrice.Text = $"Gas Price: {gasPrice:F3} €/l";
             }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to fetch fuel prices: {ex.Message}", "OK");
+            }
+
+            return gasPrice;
         }
 
         private async void SubmitBtn_Clicked(object sender, EventArgs e)
@@ -59,19 +59,14 @@ namespace FuelCostCalculator
             if (double.TryParse(TravelledDistance.Text, out distance) &&
                 double.TryParse(AvgFuelConsumption.Text, out avgFuelConsumption))
             {
-                distance = Convert.ToDouble(TravelledDistance.Text);
-                avgFuelConsumption = Convert.ToDouble(AvgFuelConsumption.Text);
-
                 CalculateFuelCost(distance, avgFuelConsumption, gasPrice);
 
-                if (CostShareAmount.Text != null && int.TryParse(CostShareAmount.Text, out numberOfPeople))
+                if (!string.IsNullOrEmpty(CostShareAmount.Text) && int.TryParse(CostShareAmount.Text, out numberOfPeople))
                 {
                     CalculateSharedFuelCost(numberOfPeople);
 
-                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
-                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€\n"
-                        + $"Shared cost between {numberOfPeople} people (€):\n"
-                        + Convert.ToString(Math.Round(sharedCost, 2)) + "€", "OK");
+                    await DisplayAlert("Result", $"Total fuel cost of travelled distance (€): {Math.Round(fuelCostEuros, 2)} €\n" +
+                        $"Shared cost between {numberOfPeople} people (€): {Math.Round(sharedCost, 2)} €", "OK");
 
                     HistoryItem historyItem = new()
                     {
@@ -85,8 +80,7 @@ namespace FuelCostCalculator
                 }
                 else
                 {
-                    await DisplayAlert("Result", "Total fuel cost of travelled distance (€):\n"
-                        + Convert.ToString(Math.Round(fuelCostEuros, 2)) + "€", "OK");
+                    await DisplayAlert("Result", $"Total fuel cost of travelled distance (€): {Math.Round(fuelCostEuros, 2)} €", "OK");
 
                     HistoryItem historyItem = new()
                     {
@@ -113,6 +107,14 @@ namespace FuelCostCalculator
         private void CalculateSharedFuelCost(int numberOfPeople)
         {
             sharedCost = fuelCostEuros / numberOfPeople;
+        }
+
+        private async void OnFuelTypeChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                await GetFuelPrice();
+            }
         }
 
         private void HistoryBtn_Clicked(object sender, EventArgs e)
