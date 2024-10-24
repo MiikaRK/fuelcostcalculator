@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace FuelCostCalculator
 {
@@ -24,16 +25,24 @@ namespace FuelCostCalculator
 
         async Task LoadHistoryItems()
         {
-            var items = await historyItemDb.GetHistoryItems();
-            HistoryItems.Clear();
-            foreach (var item in items)
+            try
             {
-                HistoryItems.Add(new HistoryItemViewModel(item));
+                var items = await historyItemDb.GetHistoryItems();
+                HistoryItems.Clear();
+                foreach (var item in items)
+                {
+                    HistoryItems.Add(new HistoryItemViewModel(item));
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Failed to load history items: {ex.Message}", "OK");
             }
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
+
             if (args.SelectedItem is not HistoryItemViewModel selectedItem)
                 return;
 
@@ -43,16 +52,20 @@ namespace FuelCostCalculator
                              $"Price of the gas (€): {selectedItem.GasPrice}\n" +
                              $"Number of people sharing the fuel cost: {selectedItem.NumberOfPeople}\n" +
                              $"Cost (€): {Math.Round(selectedItem.Cost, 2)}";
-
             await DisplayAlert("Details", message, "OK");
 
             ((ListView)sender).SelectedItem = null;
+
         }
 
-        private void ClearButton_Clicked(object sender, EventArgs e)
+        async void ClearButton_Clicked(object sender, EventArgs e)
         {
-            HistoryItems.Clear();
-            _ = historyItemDb.ClearHistoryItems();
+            bool confirm = await DisplayAlert("Confirm", "Are you sure you want to clear the history?", "Yes", "No");
+            if (confirm)
+            {
+                HistoryItems.Clear();
+                await historyItemDb.ClearHistoryItems();
+            }
         }
     }
 }
