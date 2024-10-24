@@ -32,17 +32,18 @@ Simple fuel cost calculator built with .NET MAUI framework and C#. At the moment
 - Calculator takes following inputs from the user and calculates fuel cost as a price (€): 
   - Travelled distance (km)
   - Average fuel consumption (l/100km)
-  - Current fuel price (€/l)
+  - Current fuel price (€/l) (current average fuel price in Finland)
   - The number of the people to share the fuel costs (optional)
  
 - Recent calculations are saved to the database in the device and can be seen in History page
 
 ## Screenshots
 
-![Screenshot_20240404-145711_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/d89f7027-57aa-4f7a-a085-027d59ef2b48)
-![Screenshot_20240404-145835_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/47adc4d9-995a-43f1-96d5-85b78cce4a23)
-![Screenshot_20240404-145851_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/ca5ef09a-554a-4c07-89ed-76adcbf8f998)
-![Screenshot_20240404-150946_resize](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/2026d42f-c6ae-44ce-9711-8508726f943d)
+![FuelCostCalculator_1](https://github.com/user-attachments/assets/2765ba74-046f-4d0d-bd1c-0ab0048a4742)
+![FuelCostCalculator_2](https://github.com/user-attachments/assets/55a54ed4-a678-4e0a-a80d-94270c700569)
+![FuelCostCalculator_3](https://github.com/user-attachments/assets/7a0ed832-8b70-4056-af93-68b10ac68888)
+![FuelCostCalculator_4](https://github.com/user-attachments/assets/e96ffb12-7354-4126-ade1-3af28cb28719)
+![FuelCostCalculator_5](https://github.com/user-attachments/assets/2e6d57e8-d6c7-460e-a2a6-494519ffb91c)
 
 ## License
 
