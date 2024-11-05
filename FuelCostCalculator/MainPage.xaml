@@ -13,14 +13,17 @@
             Padding="30,0"
             Spacing="25">
 
-            <StackLayout Padding="0,20,0,-35">
+            <StackLayout Padding="0,20,-30,-35">
                 <Image
-                Source="gaspump.jpg"
-                HeightRequest="170"
-                Aspect="AspectFit"
-                ScaleY="1.5"
-                ScaleX="1.5"
-                SemanticProperties.Description="Old gas pump" />
+                    HeightRequest="170"
+                    Aspect="AspectFit"
+                    ScaleY="1.5"
+                    ScaleX="1.5"
+                    SemanticProperties.Description="Old gas pump">
+                    <Image.Source>
+                        <AppThemeBinding Light="fuelpump_white.png" Dark="fuelpump_black.png" />
+                    </Image.Source>
+                </Image>
             </StackLayout>
 
             <Label
