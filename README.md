@@ -8,10 +8,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/MiikaRK/fuelcostcalculator)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
-
-
-![image](https://github.com/MiikaRK/fuelcostcalculator/assets/94705211/14cb29cd-5a67-48d7-9e75-ac0e7f415cec) 
-
+![image](https://github.com/user-attachments/assets/b1c9787a-fcf2-4366-82c6-1602d995c290)
 
 ## Overview
 
@@ -39,11 +36,11 @@ Simple fuel cost calculator built with .NET MAUI framework and C#. At the moment
 
 ## Screenshots
 
-![FuelCostCalculator_1](https://github.com/user-attachments/assets/2765ba74-046f-4d0d-bd1c-0ab0048a4742)
-![FuelCostCalculator_2](https://github.com/user-attachments/assets/55a54ed4-a678-4e0a-a80d-94270c700569)
-![FuelCostCalculator_3](https://github.com/user-attachments/assets/7a0ed832-8b70-4056-af93-68b10ac68888)
-![FuelCostCalculator_4](https://github.com/user-attachments/assets/e96ffb12-7354-4126-ade1-3af28cb28719)
-![FuelCostCalculator_5](https://github.com/user-attachments/assets/2e6d57e8-d6c7-460e-a2a6-494519ffb91c)
+![Screenshot_2024-11-05-10-27-12-99_d4be62f4caa066d8efec4b5bd04fe7a4](https://github.com/user-attachments/assets/fe9af2c0-de0a-4429-84da-0d1af06829fd)
+![Screenshot_2024-11-05-10-27-27-06_d4be62f4caa066d8efec4b5bd04fe7a4](https://github.com/user-attachments/assets/89df7c1e-9e5f-471f-9125-415a2ef8ef1c)
+![Screenshot_2024-11-05-10-27-58-77_d4be62f4caa066d8efec4b5bd04fe7a4](https://github.com/user-attachments/assets/4ed73ecf-3581-4605-9450-6d244017935b)
+![Screenshot_2024-11-05-10-28-07-17_d4be62f4caa066d8efec4b5bd04fe7a4](https://github.com/user-attachments/assets/b39f8516-2c9c-43dc-ac81-55c5de411857)
+![Screenshot_2024-11-05-10-28-16-53_d4be62f4caa066d8efec4b5bd04fe7a4](https://github.com/user-attachments/assets/5419316c-72aa-40e6-bbac-5f22733f09be)
 
 ## License
 
