@@ -1,56 +1,66 @@
-﻿using HtmlAgilityPack;
-using System.Globalization;
+﻿using System.Text.Json;
 
 namespace FuelCostCalculator
 {
     internal static class FuelPriceScraper
     {
-        public static async Task<double> GetFuel95Price(string url)
-        {
-            return await GetFuelPrice(url, "fuel-95");
-        }
+        private static readonly HttpClient HttpClient = new();
 
-        public static async Task<double> GetFuel98Price(string url)
-        {
-            return await GetFuelPrice(url, "fuel-98");
-        }
+        public static Task<double> GetFuel95Price(string url) => GetFuelPrice(url, 6, 10, "95 E10");
 
-        public static async Task<double> GetDieselPrice(string url)
-        {
-            return await GetFuelPrice(url, "fuel-dsl");
-        }
+        public static Task<double> GetFuel98Price(string url) => GetFuelPrice(url, 7, 11, "98 E5");
 
-        private static async Task<double> GetFuelPrice(string url, string fuelId)
+        public static Task<double> GetDieselPrice(string url) => GetFuelPrice(url, 8, 12, "diesel");
+
+        private static async Task<double> GetFuelPrice(string url, int priceIndex, int timestampIndex, string fuelName)
         {
-            try
+            using var response = await HttpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+
+            await using var stream = await response.Content.ReadAsStreamAsync();
+            using var document = await JsonDocument.ParseAsync(stream);
+            var root = document.RootElement;
+
+            if (!root.TryGetProperty("fresh_since", out var freshSinceElement) ||
+                !freshSinceElement.TryGetInt64(out long freshSince) ||
+                !root.TryGetProperty("stations", out var stations) ||
+                stations.ValueKind != JsonValueKind.Array)
             {
-                var web = new HtmlWeb();
-                var doc = await web.LoadFromWebAsync(url);
+                throw new InvalidDataException("Litrahinta returned an unexpected station-data format.");
+            }
 
-                var priceNode = doc.DocumentNode.SelectSingleNode($"//div[@id='{fuelId}']//h6[contains(text(), 'Keskiarvo')]");
+            long totalPriceMilliEuros = 0;
+            int stationCount = 0;
 
-                if (priceNode != null)
+            foreach (var station in stations.EnumerateArray())
+            {
+                if (station.ValueKind != JsonValueKind.Array || station.GetArrayLength() <= timestampIndex)
                 {
-                    string priceText = priceNode.InnerText.Replace("Keskiarvo", "").Trim();
-                    priceText = priceText.Replace(",", ".").Trim();
-                    priceText = new string(priceText.Where(c => char.IsDigit(c) || c == '.').ToArray());
-
-                    if (double.TryParse(priceText, NumberStyles.Any, CultureInfo.InvariantCulture, out double fuelPrice))
-                    {
-                        return Math.Round(fuelPrice, 3);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Failed to parse price for {fuelId}: {priceText}");
-                    }
+                    continue;
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception while fetching price for {fuelId}: {ex.Message}");
+
+                var country = station[9];
+                var price = station[priceIndex];
+                var timestamp = station[timestampIndex];
+
+                if (country.ValueKind != JsonValueKind.String || country.GetString() != "FI" ||
+                    price.ValueKind != JsonValueKind.Number || !price.TryGetInt32(out int priceMilliEuros) || priceMilliEuros <= 0 ||
+                    timestamp.ValueKind != JsonValueKind.Number || !timestamp.TryGetInt64(out long reportedAt) || reportedAt < freshSince)
+                {
+                    continue;
+                }
+
+                totalPriceMilliEuros += priceMilliEuros;
+                stationCount++;
             }
 
-            return 0;
+            if (stationCount == 0)
+            {
+                throw new InvalidDataException($"Litrahinta returned no recent prices for {fuelName}.");
+            }
+
+            double averagePrice = totalPriceMilliEuros / (double)stationCount / 1000;
+            return Math.Round(averagePrice, 3, MidpointRounding.AwayFromZero);
         }
     }
 }

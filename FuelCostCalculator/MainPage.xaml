@@ -19,10 +19,8 @@
                     Aspect="AspectFit"
                     ScaleY="1.5"
                     ScaleX="1.5"
+                    Source="{AppThemeBinding Light=fuelpump_white.png, Dark=fuelpump_black.png}"
                     SemanticProperties.Description="Old gas pump">
-                    <Image.Source>
-                        <AppThemeBinding Light="fuelpump_white.png" Dark="fuelpump_black.png" />
-                    </Image.Source>
                 </Image>
             </StackLayout>
 
@@ -77,6 +75,12 @@
                 x:Name="lblGasPrice"
                 Text="Gas Price: 0.0 €/l"
                 FontSize="Medium"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Prices from Litrahinta.net. Prices reported within the past week."
+                FontSize="9"
+                Margin="0,-20,0,0"
                 HorizontalOptions="Center" />
 
             <Label

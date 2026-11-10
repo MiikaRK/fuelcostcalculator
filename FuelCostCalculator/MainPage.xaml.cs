@@ -47,6 +47,8 @@
             }
             catch (Exception ex)
             {
+                _gasPrice = 0;
+                lblGasPrice.Text = "Gas Price: unavailable";
                 await DisplayAlertAsync("Error", $"Failed to fetch fuel prices: {ex.Message}", "OK");
             }
 
