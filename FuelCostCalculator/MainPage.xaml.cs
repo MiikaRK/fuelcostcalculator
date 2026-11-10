@@ -9,10 +9,12 @@
         private int _numberOfPeople;
         private double _sharedCost;
         private readonly HistoryItemDb _db;
+        private bool _isInitialized;
 
         public MainPage()
         {
             InitializeComponent();
+            _isInitialized = true;
             _db = new HistoryItemDb();
             _ = GetFuelPriceAsync();
         }
@@ -22,7 +24,7 @@
             string url = Properties.Resources.FuelApiUrl;
             if (string.IsNullOrWhiteSpace(url))
             {
-                await DisplayAlert("Error", "FuelApiUrl is not configured or is empty.", "OK");
+                await DisplayAlertAsync("Error", "FuelApiUrl is not configured or is empty.", "OK");
                 throw new InvalidOperationException("FuelApiUrl is not configured or is empty.");
             }
 
@@ -45,7 +47,7 @@
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to fetch fuel prices: {ex.Message}", "OK");
+                await DisplayAlertAsync("Error", $"Failed to fetch fuel prices: {ex.Message}", "OK");
             }
 
             return _gasPrice;
@@ -62,7 +64,7 @@
                 {
                     CalculateSharedFuelCost(_numberOfPeople);
 
-                    await DisplayAlert("Result", $"Total fuel cost of travelled distance (€): {Math.Round(_fuelCostEuros, 2)} €\n" +
+                    await DisplayAlertAsync("Result", $"Total fuel cost of travelled distance (€): {Math.Round(_fuelCostEuros, 2)} €\n" +
                         $"Shared cost between {_numberOfPeople} people (€): {Math.Round(_sharedCost, 2)} €", "OK");
 
                     HistoryItem historyItem = new()
@@ -77,7 +79,7 @@
                 }
                 else
                 {
-                    await DisplayAlert("Result", $"Total fuel cost of travelled distance (€): {Math.Round(_fuelCostEuros, 2)} €", "OK");
+                    await DisplayAlertAsync("Result", $"Total fuel cost of travelled distance (€): {Math.Round(_fuelCostEuros, 2)} €", "OK");
 
                     HistoryItem historyItem = new()
                     {
@@ -92,7 +94,7 @@
             }
             else
             {
-                await DisplayAlert("Error", "Incorrect input, try again", "OK");
+                await DisplayAlertAsync("Error", "Incorrect input, try again", "OK");
             }
         }
 
@@ -108,7 +110,7 @@
 
         private async void OnFuelTypeChanged(object sender, CheckedChangedEventArgs e)
         {
-            if (e.Value)
+            if (_isInitialized && e.Value)
             {
                 await GetFuelPriceAsync();
             }
