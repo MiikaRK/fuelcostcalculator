@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FuelCostCalculator.HistoryPage"
+             x:DataType="local:HistoryPage"
              xmlns:local="clr-namespace:FuelCostCalculator">
     <Shell.TitleView>
         <Grid>
@@ -10,26 +11,25 @@
     </Shell.TitleView>
     <ContentPage.Content>
         <StackLayout>
-            <ListView x:Name="historyListView"
-          ItemsSource="{Binding HistoryItems}"
-          ItemSelected="OnItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Date:" />
-                                    <Label Text="{Binding Date}" />
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Fuel cost (€):" Margin="25,0,0,0"/>
-                                    <Label Text="{Binding Cost}" Margin="25,0,0,0"/>
-                                </StackLayout>
+            <CollectionView x:Name="historyListView"
+                            ItemsSource="{Binding HistoryItems}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnItemSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="local:HistoryItemViewModel">
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="Date:" />
+                                <Label Text="{Binding Date}" />
                             </StackLayout>
-                        </ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="Fuel cost (€):" Margin="25,0,0,0"/>
+                                <Label Text="{Binding Cost}" Margin="25,0,0,0"/>
+                            </StackLayout>
+                        </StackLayout>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Button Text="Clear history" Clicked="ClearButton_Clicked" />
         </StackLayout>
     </ContentPage.Content>

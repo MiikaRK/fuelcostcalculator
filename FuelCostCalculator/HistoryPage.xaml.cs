@@ -36,14 +36,14 @@ namespace FuelCostCalculator
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Failed to load history items: {ex.Message}", "OK");
+                await DisplayAlertAsync("Error", $"Failed to load history items: {ex.Message}", "OK");
             }
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnItemSelected(object sender, SelectionChangedEventArgs args)
         {
 
-            if (args.SelectedItem is not HistoryItemViewModel selectedItem)
+            if (args.CurrentSelection.FirstOrDefault() is not HistoryItemViewModel selectedItem)
                 return;
 
             string message = $"Date: {selectedItem.Date}\n\n" +
@@ -52,15 +52,15 @@ namespace FuelCostCalculator
                              $"Price of the gas (€): {selectedItem.GasPrice}\n" +
                              $"Number of people sharing the fuel cost: {selectedItem.NumberOfPeople}\n" +
                              $"Cost (€): {Math.Round(selectedItem.Cost, 2)}";
-            await DisplayAlert("Details", message, "OK");
+            await DisplayAlertAsync("Details", message, "OK");
 
-            ((ListView)sender).SelectedItem = null;
+            ((CollectionView)sender).SelectedItem = null;
 
         }
 
         async void ClearButton_Clicked(object sender, EventArgs e)
         {
-            bool confirm = await DisplayAlert("Confirm", "Are you sure you want to clear the history?", "Yes", "No");
+            bool confirm = await DisplayAlertAsync("Confirm", "Are you sure you want to clear the history?", "Yes", "No");
             if (confirm)
             {
                 HistoryItems.Clear();
