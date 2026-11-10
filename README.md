@@ -29,7 +29,7 @@ Simple fuel cost calculator built with .NET MAUI framework and C#. At the moment
 - Calculator takes following inputs from the user and calculates fuel cost as a price (€): 
   - Travelled distance (km)
   - Average fuel consumption (l/100km)
-  - Current fuel price (€/l) (current average fuel price in Finland)
+  - Current fuel price (€/l) (current average fuel price in Finland) (price fetched from Litrahinta.net JSON API)
   - The number of the people to share the fuel costs (optional)
  
 - Recent calculations are saved to the database in the device and can be seen in History page
